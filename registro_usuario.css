@@ -1,0 +1,39 @@
+.formulario {   
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#formulario-registro {
+    border: 2px solid black;
+    padding: 16px;         /* espacio entre el borde y el contenido */
+    border-radius: 8px;    /* esquinas redondeadas */
+    margin: 100px;          /* espacio entre el cuadro y otros elementos afuera */
+}
+
+label {
+    font-size: 20px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    /* Se pone la manito cuando pasamos el cursor por arriba*/
+}
+
+#boton-register {
+    background-color: #054169;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    padding: 2% 5%;
+    width: 50%;
+    cursor: pointer;    
+}

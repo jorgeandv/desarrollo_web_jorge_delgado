@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="registro_usuario.css">
+    <meta charset="UTF-8">
+    <title>Registro</title>
+</head>
+<body>
+    <h1>Registro de voluntarios(as) para aves </h1>
+    <div class="main-container">
+
+        <div id="val-box" hidden>
+            <h2 id="val-msg"></h2>
+            <ul id="val-list"></ul>
+        </div>
+
+        <form name= "formularioR" class="formulario" id="formulario-registro">  
+            <div class="grupo-input" id="name-input">  
+                <label for="name">Nombre:</label>
+                <input name="nombre" id="name" type="text" required> 
+            </div> 
+
+            <div class="grupo-input" id="surname-input"> 
+                <label for="surname">Apellido:</label>
+                <input name="apellido" id="surname" type="text" required> 
+            </div>
+
+            <div class="grupo-input" id="email-input"> 
+                <label for="email">Email:</label>
+                <input name="email" id="email" type="email" required> 
+            </div>
+
+            <div class="grupo-input" id="telefono-input"> 
+                <label for="telefono">Teléfono:</label>
+                <input name="telefono" id="telefono" type="tel" required> 
+            </div>
+
+            <div class="grupo-input" id="region-input">
+                <label for="region">Región:</label>
+                <input name="region" id ="region" type="text" required> 
+            </div>
+
+            <div class="grupo-input" id="comuna-input">
+                <label for="comuna">Comuna:</label>
+                <input name="comuna" id="comuna" type="text" required> 
+            </div>
+
+            <div class="grupo-input" id="postal-input">
+                <label for="postal">Código postal:</label>
+                <input name="postal" id="postal" type="text" required> 
+            </div>
+
+            <div class="botones-formularios">
+                <button id="boton-register" type="submit">Registrarse</button>
+            </div>
+        </form>
+    </div>
+        <div class = "botones-no-formularios">
+        </div>
+    <script src="validacion_registro_usuario.js"></script>
+    <script src="registro_usuario.js"></script>
+</body>
+</html>
+
+
+<!-- Usamos class "grupo input" para cambiar todo a la vez en el CSS, eso va dentro de un <div> porque no hay otro tag que me contenga los inputs-->

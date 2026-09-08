@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Avisatamiento</title>
+</head>
+<body>
+    <h1> Registar avistamiento de ave </h1>
+    <div class="main-container">
+
+        <div id="val-box" hidden>
+            <h2 id="val-msg"></h2>
+            <ul id="val-list"></ul>
+        </div>
+
+        <form name="formularioA" class="formulario" id="formulario-registro-ave">
+
+            <div class="grupo-input" id="tipo-input">  
+            <label for="tipo">Tipo del ave:</label>
+            <input name="tipo" id="tipo" type="text" required> 
+            </div> 
+
+            <div class="grupo-input" id="ave-input">  
+            <label for="ave">Nombre del ave:</label>
+            <input name="ave" id="ave" type="text" required> 
+            </div>         
+        
+            <div class="grupo-input" id="lugar-input">  
+            <label for="lugar">Lugar del avistamiento:</label>
+            <input name="lugar" id="lugar" type="text" required> 
+
+            <div class="grupo-input" id="fecha-input">  
+            <label for="fecha">Fecha del avistamiento:</label>
+            <input id="fecha" type="date" required> 
+            </div> 
+
+            <div class="grupo-input" id="hora-input">  
+            <label for="hora">Hora del avistamiento:</label>
+            <input name="hora" id="hora" type="time" required> 
+            </div>
+
+            <div class="grupo-input" id="archivo-input">  
+            <label for="archivo">Registro del avistamiento:</label>
+            <input name="archivo" id="archivo" type="file" accept="image/*, video/*" required> 
+            </div>
+
+            <div class="botones-formularios">
+                <button id="boton-register" type="submit">Registrar</button>
+            </div>
+
+        </form>
+    </div>
+
+    <h2>Lista de avistamientos</h2>
+    <form class="formulario" id="formulario-lista-avistamientos">
+        <label for="select-tipo">Seleccione un tipo</label>
+        <select name="select-tipo" id="select-tipo" required>
+            <option value="">Seleccione un Tipo</option>
+        </select>
+        
+
+        <label for="select-ordenar-por">Ordenar por</label>
+        <select name="select-ordenar-por" id="select-ordenar-por" required>
+            <option value="">Seleccione un orden</option>
+            <option value="fecha">Fecha </option>
+            <option value="lugar">Lugar</option> 
+        </select>
+
+        <label for="select-direccion">Dirección</label>
+        <select name="select-direccion" id="select-direccion" required>
+            <option value="">Seleccione un orden</option>
+            <option value="ascendente">Ascendente </option>
+            <option value="descendente">Descendente</option> 
+        </select>        
+        
+        
+
+        <div class="botones-formularios">
+            <button id="boton-filtrar" type="submit">Filtrar</button>
+        </div>        
+    </form>
+
+    <div id="mostrar">
+    
+    </div>
+    <script src="validacion_avistamiento.js"></script>
+    <script src="avistamiento.js"></script>
+</body>
+</html>
