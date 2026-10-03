@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h2>Hola!</h2>
+<p>Esta plataforma reúne a voluntarios(as) que registran avistamientos de aves.
+  Elige una de las opciones para comenzar.</p>
+
+<!-- Los enlaces del menu se conectan a sus rutas cuando se implemente cada funcionalidad -->
+<nav class="botones">
+  <a class="boton-menu" href="{{ url_for('registrar_voluntario') }}">Registrar voluntario</a>
+  <a class="boton-menu" href="#">Informar avistamiento</a>
+  <a class="boton-menu" href="#">Estadísticas</a>
+</nav>
+
+<h2>Últimos avistamientos</h2>
+{% if ultimos %}
+  {% for u in ultimos %}
+  <article class="avistamiento-resumen">
+    {% if u.foto %}
+      <img src="{{ url_for('static', filename=u.foto) }}" alt="Foto del avistamiento de {{ u.ave }}" width="150">
+    {% endif %}
+    <div>
+      <h3>{{ u.ave }}</h3>
+      <p>Lugar: {{ u.lugar }}</p>
+      <p>Fecha y hora: {{ u.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</p>
+      <p>Informado por: {{ u.voluntario }}</p>
+      <p>Archivos adjuntos: {{ u.n_archivos }}</p>
+    </div>
+  </article>
+  {% endfor %}
+{% else %}
+  <p>Todavía no hay avistamientos registrados.</p>
+{% endif %}
+{% endblock %}

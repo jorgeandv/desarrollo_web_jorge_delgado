@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Registrar voluntario{% endblock %}
+
+{% block content %}
+<h2>Registrar voluntario(a)</h2>
+
+<!-- mensajes de validacion -->
+<div id="val-box" class="val-error" {% if not errores %}hidden{% endif %}>
+    <h3 id="val-msg">{% if errores %}Los siguientes campos son inválidos:{% endif %}</h3>
+    <ul id="val-list">
+        {% for e in errores %}
+        <li>{{ e }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<form name="formularioR" class="formulario" id="formulario-registro" action="{{ url_for('registrar_voluntario') }}" method="post">
+    <div class="grupo-input" id="name-input">
+        <label for="name">Nombre:</label>
+        <input name="nombre" id="name" type="text" maxlength="100" required>
+    </div>
+
+    <div class="grupo-input" id="surname-input">
+        <label for="surname">Apellido:</label>
+        <input name="apellido" id="surname" type="text" maxlength="100" required>
+    </div>
+
+    <div class="grupo-input" id="email-input">
+        <label for="email">Email:</label>
+        <input name="email" id="email" type="email" maxlength="80" required>
+    </div>
+
+    <div class="grupo-input" id="telefono-input">
+        <label for="telefono">Teléfono:</label>
+        <input name="telefono" id="telefono" type="tel" maxlength="15" required>
+    </div>
+
+    <div class="grupo-input" id="region-input">
+        <label for="region">Región:</label>
+        <select name="region" id="region" required>
+        <option value="">Seleccione una región</option>
+        {% for r in regiones %}
+        <option value="{{ r.id }}">{{ r.nombre|trim }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <div class="grupo-input" id="comuna-input">
+        <label for="comuna">Comuna:</label>
+        <select name="comuna" id="comuna" required>
+        <option value="">Seleccione una comuna</option>
+        {% for c in comunas %}
+        <option value="{{ c.id }}" data-region="{{ c.region_id }}">{{ c.nombre }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <div class="botones-formularios">
+        <button id="boton-register" type="submit">Registrarse</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/validacion_voluntario.js') }}"></script>
+<script src="{{ url_for('static', filename='js/registro_voluntario.js') }}"></script>
+{% endblock %}

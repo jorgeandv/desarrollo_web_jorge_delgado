@@ -1,0 +1,49 @@
+.main-container {
+    margin: 0 100px 40px 100px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.boton-menu {
+    background-color: #054169;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    padding: 2% 5%;
+    margin: 8px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.avistamiento-resumen {
+    display: flex;
+    border: 2px solid black;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.avistamiento-resumen img {
+    margin-right: 16px;
+    height: 110px;
+}
+
+.avistamiento-resumen h3 {
+    margin-top: 0;
+}
+
+.avistamiento-resumen p {
+    margin: 4px 0;
+}
