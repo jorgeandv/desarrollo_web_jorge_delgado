@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Listado de avistamientos{% endblock %}
+
+{% block content %}
+<h2>Lista de avistamientos</h2>
+
+<!-- Mismo formulario de la tarea 1, pero ahora el filtro es por ave (el campo tipo no existe en la BD).
+     Se envia por GET, asi los filtros quedan en la URL y se mantienen al cambiar de pagina -->
+<form class="formulario" id="formulario-lista-avistamientos" action="{{ url_for('listado_avistamientos') }}" method="get">
+    <div class="grupo-input">
+        <label for="select-tipo">Seleccione un ave</label>
+        <select name="ave" id="select-tipo">
+            <option value="">Todas las aves</option>
+            {% for a in aves %}
+            <option value="{{ a.id }}" {% if filtros.ave == a.id %}selected{% endif %}>{{ a.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="grupo-input">
+        <label for="select-ordenar-por">Ordenar por</label>
+        <select name="ordenar" id="select-ordenar-por" required>
+            <option value="">Seleccione un orden</option>
+            <option value="fecha" {% if filtros.ordenar == "fecha" %}selected{% endif %}>Fecha</option>
+            <option value="lugar" {% if filtros.ordenar == "lugar" %}selected{% endif %}>Lugar</option>
+        </select>
+    </div>
+
+    <div class="grupo-input">
+        <label for="select-direccion">Dirección</label>
+        <select name="direccion" id="select-direccion" required>
+            <option value="">Seleccione un orden</option>
+            <option value="ascendente" {% if filtros.direccion == "ascendente" %}selected{% endif %}>Ascendente</option>
+            <option value="descendente" {% if filtros.direccion == "descendente" %}selected{% endif %}>Descendente</option>
+        </select>
+    </div>
+
+    <div class="botones-formularios">
+        <button id="boton-filtrar" type="submit">Filtrar</button>
+    </div>
+</form>
+
+<!-- Cada parrafo es una "fila": al hacer clic se va al detalle del avistamiento -->
+<div id="mostrar">
+    {% if data %}
+        {% for a in data %}
+        <p class="fila-avistamiento">
+            <a href="{{ url_for('detalle_avistamiento', id=a.id) }}">El ave {{ a.ave }} fue avistada en {{ a.lugar }} el {{ a.fecha_hora.strftime('%d-%m-%Y') }} a las {{ a.fecha_hora.strftime('%H:%M') }}</a>
+        </p>
+        {% endfor %}
+    {% else %}
+        <p>No hay avistamientos para mostrar.</p>
+    {% endif %}
+</div>
+
+<!-- Paginacion: los links mantienen los filtros elegidos -->
+<nav class="paginacion">
+    {% if pagina > 1 %}
+    <a class="boton-menu" href="{{ url_for('listado_avistamientos', pagina=pagina - 1, ave=filtros.ave, ordenar=filtros.ordenar, direccion=filtros.direccion) }}">Anterior</a>
+    {% endif %}
+    <span>Página {{ pagina }} de {{ total_paginas }}</span>
+    {% if pagina < total_paginas %}
+    <a class="boton-menu" href="{{ url_for('listado_avistamientos', pagina=pagina + 1, ave=filtros.ave, ordenar=filtros.ordenar, direccion=filtros.direccion) }}">Siguiente</a>
+    {% endif %}
+</nav>
+
+<nav class="botones">
+    <a class="boton-menu" href="{{ url_for('index') }}">Volver al inicio</a>
+</nav>
+{% endblock %}

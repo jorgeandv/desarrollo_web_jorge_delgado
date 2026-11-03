@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Informar avistamiento{% endblock %}
+
+{% block content %}
+<h2>Registrar avistamiento de ave</h2>
+
+<!-- mensajes de validacion (los llena el servidor o validacion_avistamiento.js) -->
+<div id="val-box" class="val-error" {% if not errores %}hidden{% endif %}>
+    <h3 id="val-msg">Los siguientes campos son inválidos:</h3>
+    <ul id="val-list">
+        {% for e in errores %}
+        <li>{{ e }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- enctype multipart/form-data es necesario para poder enviar archivos -->
+<form name="formularioA" class="formulario" id="formulario-registro-ave"
+      action="{{ url_for('informar_avistamiento') }}" method="post" enctype="multipart/form-data">
+
+    <div class="grupo-input" id="voluntario-input">
+        <label for="voluntario">Voluntario(a) que informa:</label>
+        <select name="voluntario" id="voluntario" required>
+            <option value="">Seleccione un voluntario(a)</option>
+            {% for v in voluntarios %}
+            <option value="{{ v.id }}">{{ v.nombre }} ({{ v.email }})</option>
+            {% endfor %}
+        </select>
+        {% if not voluntarios %}
+        <p>No hay voluntarios registrados. <a href="{{ url_for('registrar_voluntario') }}">Registra uno primero</a>.</p>
+        {% endif %}
+    </div>
+
+    <div class="grupo-input" id="ave-input">
+        <label for="ave">Nombre del ave:</label>
+        <select name="ave" id="ave" required>
+            <option value="">Seleccione un ave</option>
+            {% for a in aves %}
+            <option value="{{ a.id }}">{{ a.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="grupo-input" id="lugar-input">
+        <label for="lugar">Lugar del avistamiento:</label>
+        <input name="lugar" id="lugar" type="text" maxlength="200" required>
+    </div>
+
+    <div class="grupo-input" id="fecha-input">
+        <label for="fecha">Fecha del avistamiento:</label>
+        <input name="fecha" id="fecha" type="date" required>
+    </div>
+
+    <div class="grupo-input" id="hora-input">
+        <label for="hora">Hora del avistamiento:</label>
+        <input name="hora" id="hora" type="time" required>
+    </div>
+
+    <div class="grupo-input" id="archivo-input">
+        <label for="archivos">Registro del avistamiento (fotos o videos, máximo 5):</label>
+        <input name="archivos" id="archivos" type="file" accept="image/*,video/*" multiple required>
+    </div>
+
+    <div class="botones-formularios">
+        <button id="boton-register" type="submit">Registrar</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/validacion_avistamiento.js') }}"></script>
+<script src="{{ url_for('static', filename='js/avistamiento.js') }}"></script>
+{% endblock %}

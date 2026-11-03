@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Estadísticas{% endblock %}
+
+{% block css %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/stats.css') }}"
+    >
+{% endblock %}
+
+{% block content %}
+<h2>Estadísticas</h2>
+<div class="stats-container">
+    <figure class="highcharts-figure">
+        <div id="container-lineas"></div>
+        <p class="highcharts-description">
+            El anterior gráfico presenta la cantidad de avistamientos registrados por día.
+        </p>
+    </figure>
+</div>
+<div class="stats-container">
+    <figure class="highcharts-figure">
+        <div id="container-torta"></div>
+        <p class="highcharts-description">
+            El anterior gráfico presenta el total de avistamientos por ave.
+        </p>
+    </figure>
+</div>
+<div class="stats-container">
+    <figure class="highcharts-figure">
+        <div id="container-barras"></div>
+        <p class="highcharts-description">
+            El anterior gráfico presenta el total de voluntarios registrados por comuna.
+        </p>
+    </figure>
+</div>
+
+<nav class="botones">
+    <a class="boton-menu" href="{{ url_for('index') }}">Volver a la portada</a>
+</nav>
+{% endblock content %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{url_for('static', filename='js/stats.js')}}"></script>
+{% endblock %}

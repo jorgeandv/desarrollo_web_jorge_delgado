@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Detalle del avistamiento{% endblock %}
+
+{% block content %}
+<h2>Avistamiento de {{ avistamiento.ave }}</h2>
+
+<!-- Informacion ordenada del avistamiento -->
+<div class="detalle-avistamiento">
+    <p><strong>Ave:</strong> {{ avistamiento.ave }}</p>
+    <p><strong>Lugar:</strong> {{ avistamiento.lugar }}</p>
+    <p><strong>Fecha:</strong> {{ avistamiento.fecha_hora.strftime('%d-%m-%Y') }}</p>
+    <p><strong>Hora:</strong> {{ avistamiento.fecha_hora.strftime('%H:%M') }}</p>
+    <p><strong>Informado por:</strong> {{ avistamiento.voluntario }} ({{ avistamiento.comuna }}, {{ avistamiento.region }})</p>
+</div>
+
+<!-- Fotos y videos (registros) del avistamiento -->
+<h3>Registros del avistamiento</h3>
+<div class="registros">
+    {% for archivo in avistamiento.archivos %}
+        {% if archivo.es_video %}
+        <video src="{{ url_for('static', filename=archivo.ruta) }}" controls width="320">
+            Tu navegador no puede reproducir este video.
+        </video>
+        {% else %}
+        <img src="{{ url_for('static', filename=archivo.ruta) }}" alt="Foto del avistamiento: {{ archivo.nombre }}" width="320">
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Comentarios: el formulario se envia con fetch desde comentarios.js (sin recargar la pagina) -->
+<h3>Comentarios</h3>
+
+<!-- mensajes de validacion (los llena comentarios.js) -->
+<div id="val-box-comentario" class="val-error" hidden>
+    <h4 id="val-msg-comentario">Los siguientes campos son inválidos:</h4>
+    <ul id="val-list-comentario"></ul>
+</div>
+
+<form name="formularioC" class="formulario" id="formulario-comentario">
+    <div class="grupo-input" id="nombre-comentarista-input">
+        <label for="nombre-comentarista">Nombre:</label>
+        <input name="nombre" id="nombre-comentarista" type="text" minlength="3" maxlength="50" required>
+    </div>
+
+    <div class="grupo-input" id="texto-comentario-input">
+        <label for="texto-comentario">Comentario:</label>
+        <textarea name="texto" id="texto-comentario" rows="3" cols="40" minlength="5" maxlength="300" required></textarea>
+    </div>
+
+    <div class="botones-formularios">
+        <!-- se le pasa el id del avistamiento al que pertenece el comentario -->
+        <button id="boton-comentario" type="button" onclick='agregarComentario({{ avistamiento.id }})'>Agregar comentario</button>
+    </div>
+</form>
+
+<nav class="botones">
+    <a class="boton-menu" href="{{ url_for('listado_avistamientos') }}">Volver al listado</a>
+    <a class="boton-menu" href="{{ url_for('index') }}">Volver al inicio</a>
+</nav>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/comentarios.js') }}"></script>
+{% endblock %}
