@@ -1,0 +1,10 @@
+tarea4\tarea4\models\Nota.class
+tarea4\tarea4\models\Ave.class
+tarea4\tarea4\models\Avistamiento.class
+tarea4\tarea4\controllers\AppController.class
+tarea4\tarea4\models\Comuna.class
+tarea4\tarea4\services\ApiService.class
+tarea4\tarea4\controllers\ApiController.class
+tarea4\tarea4\models\Voluntario.class
+tarea4\tarea4\models\AvistamientoRepository.class
+tarea4\tarea4\models\NotaRepository.class

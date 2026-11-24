@@ -1,0 +1,43 @@
+#search-form {
+    margin-bottom: 20px;
+}
+
+.avistamiento-container {
+    padding: 8px 16px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.avistamiento-container p {
+    margin: 4px 0;
+}
+
+.texto-destacado {
+    background-color: #bcad26;
+    font-weight: bold;
+}
+
+.boton-evaluar {
+    background-color: #054169;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    padding: 6px 16px;
+    margin: 8px 8px 4px 0;
+    cursor: pointer;
+}
+
+.select-nota {
+    font-size: 16px;
+    padding: 4px;
+}
+
+.mensaje-exito {
+    color: #16b41b;
+}
+
+.mensaje-error {
+    color: #f44336;
+}

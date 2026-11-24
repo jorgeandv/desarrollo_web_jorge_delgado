@@ -1,0 +1,38 @@
+.main-container {
+    margin: 0 100px 40px 100px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: 2px solid black;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.grupo-input input,
+.grupo-input select,
+.grupo-input textarea {
+    font-size: 16px;
+    padding: 4px;
+}
+
+@media (max-width: 700px) {
+    .main-container {
+        margin: 0 16px 40px 16px;
+    }
+    .grupo-input {
+        width: 100%;
+    }
+}
